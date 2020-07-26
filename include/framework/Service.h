@@ -58,6 +58,7 @@ namespace Cppelix {
 
         CppelixProperties _properties;
     private:
+        // Methods used by the DependencyManager/LifecycleManager to setup the service
         ///
         /// \return true if started
         [[nodiscard]] bool internal_start();

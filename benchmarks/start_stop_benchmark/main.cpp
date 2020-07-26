@@ -21,11 +21,11 @@ int main() {
     std::locale::global(std::locale("en_US.UTF-8"));
 
     DependencyManager dm{};
-    auto logMgr = dm.createServiceManager<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
+    auto logMgr = dm.createService<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
     logMgr->setLogLevel(LogLevel::INFO);
-    auto logAdminMgr = dm.createServiceManager<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
-    auto testMgr = dm.createServiceManager<ITestService, TestService>(RequiredList<ILogger>, OptionalList<>, CppelixProperties{{"LogLevel", LogLevel::INFO}});
-    auto startStopMgr = dm.createServiceManager<IStartStopService, StartStopService>(RequiredList<ILogger, ITestService>, OptionalList<>, CppelixProperties{{"LogLevel", LogLevel::INFO}});
+    auto logAdminMgr = dm.createService<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
+    auto testMgr = dm.createService<ITestService, TestService>(RequiredList<ILogger>, OptionalList<>, CppelixProperties{{"LogLevel", LogLevel::INFO}});
+    auto startStopMgr = dm.createService<IStartStopService, StartStopService>(RequiredList<ILogger, ITestService>, OptionalList<>, CppelixProperties{{"LogLevel", LogLevel::INFO}});
     dm.start();
 
     return 0;

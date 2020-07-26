@@ -46,6 +46,7 @@ With this rewrite comes an opportunity to remove some features that are not used
 
 # Todo
 
+* Proper CMake support for including as a library
 * Support parsing filter (LDAP) strings to type-safe filter currently used
 * etcd support (copy celix library or use COTS for etcd v3?)
 * Pubsub compatibility with celix

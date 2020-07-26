@@ -19,7 +19,7 @@ public:
 
     bool start() final {
         LOG_INFO(_logger, "UsingTimerService started");
-        _timerManager = getManager()->createServiceManager<ITimer, Timer>();
+        _timerManager = getManager()->createService<ITimer, Timer>();
         _timerManager->setChronoInterval(std::chrono::milliseconds(500));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(getServiceId(), this, _timerManager->getServiceId());
         _timerManager->startTimer();

@@ -159,9 +159,9 @@ namespace Cppelix {
         template<class Interface, class Impl, typename... Required, typename... Optional>
         requires Derived<Impl, Service> && Derived<Impl, Interface>
         [[nodiscard]]
-        auto createServiceManager(RequiredList_t<Required...>, OptionalList_t<Optional...>, CppelixProperties properties = CppelixProperties{}) {
+        auto createService(RequiredList_t<Required...>, OptionalList_t<Optional...>, CppelixProperties properties = CppelixProperties{}) {
             if constexpr(sizeof...(Required) == 0 && sizeof...(Optional) == 0) {
-                return createServiceManager<Interface, Impl>(std::move(properties));
+                return createService<Interface, Impl>(std::move(properties));
             }
 
             auto cmpMgr = LifecycleManager<Interface, Impl, Required..., Optional...>::template create(_logger, "", std::move(properties), RequiredList<Required...>, OptionalList<Optional...>);
@@ -199,7 +199,7 @@ namespace Cppelix {
         template<class Interface, class Impl>
         requires Derived<Impl, Service> && Derived<Impl, Interface>
         [[nodiscard]]
-        auto createServiceManager(CppelixProperties properties = {}) {
+        auto createService(CppelixProperties properties = {}) {
             auto cmpMgr = LifecycleManager<Interface, Impl>::create(_logger, "", std::move(properties));
 
             if constexpr (std::is_same<Interface, IFrameworkLogger>::value) {

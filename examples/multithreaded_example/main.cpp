@@ -30,9 +30,9 @@ int main() {
         DependencyManager dm{};
         channel.addManager(&dm);
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        auto logMgr = dm.createServiceManager<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
-        auto logAdminMgr = dm.createServiceManager<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
-        auto oneService = dm.createServiceManager<IOneService, OneService>(RequiredList<ILogger>, OptionalList<>);
+        auto logMgr = dm.createService<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
+        auto logAdminMgr = dm.createService<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
+        auto oneService = dm.createService<IOneService, OneService>(RequiredList<ILogger>, OptionalList<>);
         dm.start();
     });
 
@@ -40,9 +40,9 @@ int main() {
         DependencyManager dm{};
         channel.addManager(&dm);
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        auto logMgr = dm.createServiceManager<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
-        auto logAdminMgr = dm.createServiceManager<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
-        auto otherService = dm.createServiceManager<IOtherService, OtherService>(RequiredList<ILogger>, OptionalList<>);
+        auto logMgr = dm.createService<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
+        auto logAdminMgr = dm.createService<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
+        auto otherService = dm.createService<IOtherService, OtherService>(RequiredList<ILogger>, OptionalList<>);
         dm.start();
     });
 

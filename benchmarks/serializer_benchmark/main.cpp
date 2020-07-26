@@ -19,12 +19,12 @@ int main() {
     std::locale::global(std::locale("en_US.UTF-8"));
 
     DependencyManager dm{};
-    auto logMgr = dm.createServiceManager<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
+    auto logMgr = dm.createService<IFrameworkLogger, FRAMEWORK_LOGGER_TYPE>();
     logMgr->setLogLevel(LogLevel::INFO);
-    auto logAdminMgr = dm.createServiceManager<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
-    auto serAdmin = dm.createServiceManager<ISerializationAdmin, SerializationAdmin>(RequiredList<ILogger>, OptionalList<>);
-    auto testMsgSerializer = dm.createServiceManager<ISerializer, TestMsgJsonSerializer>(RequiredList<ILogger, ISerializationAdmin>, OptionalList<>);
-    auto testMgr = dm.createServiceManager<ITestService, TestService>(RequiredList<ILogger, ISerializationAdmin>, OptionalList<>);
+    auto logAdminMgr = dm.createService<ILoggerAdmin, LoggerAdmin<LOGGER_TYPE>>();
+    auto serAdmin = dm.createService<ISerializationAdmin, SerializationAdmin>(RequiredList<ILogger>, OptionalList<>);
+    auto testMsgSerializer = dm.createService<ISerializer, TestMsgJsonSerializer>(RequiredList<ILogger, ISerializationAdmin>, OptionalList<>);
+    auto testMgr = dm.createService<ITestService, TestService>(RequiredList<ILogger, ISerializationAdmin>, OptionalList<>);
     dm.start();
 
     return 0;

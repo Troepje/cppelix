@@ -42,7 +42,7 @@ public:
         auto requestedLevel = requestedLevelIt != end(*evt->properties) ? std::any_cast<LogLevel>(requestedLevelIt->second) : LogLevel::INFO;
         if(logger == end(_loggers)) {
             LOG_INFO(_logger, "creating logger for svcid {}", evt->originatingService);
-            _loggers.emplace(evt->originatingService, getManager()->template createServiceManager<ILogger, T>(CppelixProperties{{"LogLevel", requestedLevel}, {"TargetServiceId", evt->originatingService}, {"Filter", Filter{ServiceIdFilterEntry{evt->originatingService}}}}));
+            _loggers.emplace(evt->originatingService, getManager()->template createService<ILogger, T>(CppelixProperties{{"LogLevel", requestedLevel}, {"TargetServiceId", evt->originatingService}, {"Filter", Filter{ServiceIdFilterEntry{evt->originatingService}}}}));
         } else {
             LOG_INFO(_logger, "svcid {} already has logger", evt->originatingService);
         }
